@@ -1,7 +1,10 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 
 const BlogPost = (props) => {
-    const {author_name,blog_title,read_time,images,publish_date} = props.blog;
+    const {id, author_name,blog_title,read_time,images,publish_date} = props.blog;
+    const totalBookmark = props.totalBookmark;
     return (
         <div>
             <img src={images.blog_cover_image} alt="blog Post pic" />
@@ -15,11 +18,11 @@ const BlogPost = (props) => {
                 </div>
                 <div className='col-span-1 flex justify-end'>
                     <p>{read_time} min read</p>
-                    <i className='ml-2'>red</i>
+                    <i onClick={() => totalBookmark(id)} className='ml-2 cursor-pointer'><FontAwesomeIcon icon={faBookmark} /></i>
                 </div>
             </div>
-            <p className='text-2xl font-bold text-left ml-5'>{blog_title}</p>
-            <button className='items-start'>Mark as read</button>
+            <p className='text-2xl font-bold text-left ml-5 mt-5'>{blog_title}</p>
+            <button onClick={() => totalBookmark(id)} className="bg-red-600 px-4 py-2 my-3 rounded-md text-white text-left block ml-5">Mark as read</button>
         </div>
     );
 };
